@@ -1,7 +1,10 @@
-import React, { Component } from "react";
-import { FaPencilAlt } from 'react-icons/fa';
+import React, { Component } from "react"
+import { FaPencilAlt } from 'react-icons/fa'
 import { FaTrash } from 'react-icons/fa'
 import { FaSave } from 'react-icons/fa'
+import './style.css'
+import ImageUploader from 'react-images-upload';
+
 
 class Book extends Component {
   constructor(props) {
@@ -10,14 +13,17 @@ class Book extends Component {
       title: "",
       genre: "",
       price: "",
+      pictures: ""
     };
+
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderDisplay = this.renderDisplay.bind(this);
     this.renderForm = this.renderForm.bind(this);
     this.edit = this.edit.bind(this);
-    this.remove = this.remove.bind(this)
+    this.remove = this.remove.bind(this);
+    this.onDrop = this.onDrop.bind(this)
   }
 
   handleChange(event) {
@@ -45,6 +51,11 @@ class Book extends Component {
     remove() {
         this.props.onRemove(this.props.index)
         alert("Book removed")
+    }
+    onDrop(picture) {
+        this.setState({
+            pictures: this.state.pictures.concat(picture),
+        })
     }
     renderForm() {
         return (
@@ -88,7 +99,21 @@ class Book extends Component {
                         ref={input => this.price = input }
                         />
                     </div>
-                    </div>              
+                    </div>
+
+                    <div className="field">
+                    <label className="label">Cover</label>
+                    <div className="control">
+                    <ImageUploader
+                        withIcon={true}
+                        buttonText='Choose image'
+                        singleImage={true}
+                        onChange={this.onDrop}
+                        imgExtension={['.jpg', '.jpeg', '.gif', '.png', '.gif']}
+                        maxFileSize={5242880}
+                    />
+                    </div>
+                    </div>   
 
                     <div className="field">
                     <label className="label">Genre</label>

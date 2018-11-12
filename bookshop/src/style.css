@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700');
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    font-family: 'PT Sans', sans-serif;
+}
+
+.container {
+    display: flex;
+    background-color: #F2F2F2
+}
+
+.genre {
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #10BBD5
+}
+
+.title {
+    font-size: 16px;
+    text-transform: capitalize;
+    color: #2C2C2C
+}
+
+.author {
+    font-size: 14px;
+    font-style: italic;
+    color: #2C2C2C
+}
+
+.price {
+    font-size: 17px;
+    color: #FF0072
+}
+
+
+button .remove {
+    color: #ffffff;
+    background-color: #FF0072;
+    font-size: 12px
+}
+
+button .remove:hover {
+    background-color: #FF4C9C
+}
+
+button .edit {
+    color: #ffffff;
+    background-color: #10BBD5;
+    font-size: 12px
+}
+
+button .edit:hover {
+    background-color: #29D5EF
+}
+
+#plusicon:hover path {
+    fill: #29D5EF;
+}
+

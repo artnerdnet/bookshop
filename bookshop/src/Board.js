@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import Note from './Note'
 import Book from './book'
 import { FaPlus } from 'react-icons/fa'
+import './style.css';
 
-class Board extends Component {
+
+class Shelf extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -22,9 +23,10 @@ class Board extends Component {
 				...prevState.books,
 				{
 					id: this.nextId(),
-					title: null,
-					genre: null,
+					title: 'Title',
+					genre: 'Genre',
 					price: null,
+					picture: null
 				}
 			]
 		}))
@@ -55,16 +57,17 @@ class Board extends Component {
 				  index={i}
 				  onChange={this.update}
 				  onRemove={this.remove}>
-				  {book.title}
-				  {book.price}
-				  {book.genre}
+				<p className='cover'>{book.picture}</p>
+				  <p className='genre'>{book.genre}</p>
+				  <p className='title'>{book.title}</p>
+				  <p className='price'>${book.price}</p>
 		    </ Book>
 		)
 	}
 
 	render() {
 		return (
-			<div className="board">
+			<div className="shelf">
 				{this.state.books.map(this.eachBook)}
 				<button onClick={this.add.bind(null, "New Book")}
 						id="add">
@@ -75,4 +78,4 @@ class Board extends Component {
 	}
 }
 
-export default Board
+export default Shelf
