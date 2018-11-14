@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import Book from './book'
+import BookEditor from './BookEditor'
 import { FaPlus } from 'react-icons/fa'
 import './style.css';
+import { Link } from 'react-router-dom'
 
 
 class Shelf extends Component {
@@ -10,32 +12,12 @@ class Shelf extends Component {
 		this.state = {
 			books: []
 		}
-		this.add = this.add.bind(this)
 		this.eachBook = this.eachBook.bind(this)
 		this.update = this.update.bind(this)
 		this.remove = this.remove.bind(this)
-		this.nextId = this.nextId.bind(this)
 	}
-
-	add(text) {
-		this.setState(prevState => ({
-			books: [
-				...prevState.books,
-				{
-					id: this.nextId(),
-					title: 'Title',
-					genre: 'Genre',
-					price: null,
-					picture: null
-				}
-			]
-		}))
-	}
-
-	nextId() {
-		this.uniqueId = this.uniqueId || 0
-		return this.uniqueId++
-	}
+	
+	
 
 	update(title, genre, price, i) {
 		this.setState(prevState => ({
@@ -57,7 +39,7 @@ class Shelf extends Component {
 				  index={i}
 				  onChange={this.update}
 				  onRemove={this.remove}>
-				<p className='cover'>{book.picture}</p>
+				  <p className='cover'>{book.picture}</p>
 				  <p className='genre'>{book.genre}</p>
 				  <p className='title'>{book.title}</p>
 				  <p className='price'>${book.price}</p>
@@ -69,10 +51,7 @@ class Shelf extends Component {
 		return (
 			<div className="shelf">
 				{this.state.books.map(this.eachBook)}
-				<button onClick={this.add.bind(null, "New Book")}
-						id="add">
-					<FaPlus />
-				</button>
+				<BookEditor />
 			</div>
 		)
 	}
